@@ -24,7 +24,8 @@ async function main() {
       
       try {
         const data = await client.getPriceAndAvailability(chunk);
-        results.push(...data);
+        const products = Array.isArray(data) ? data : (data.products || []);
+        results.push(...products);
       } catch (error) {
         console.error(`Error processing chunk: ${error.message}`);
       }

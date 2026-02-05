@@ -16,11 +16,13 @@ async function main() {
     
     const priceData = await client.getPriceAndAvailability(productSkus);
 
-    console.log('📦 Products:', priceData.length || 0);
+    // Handle response structure - could be array or object with products property
+    const products = Array.isArray(priceData) ? priceData : (priceData.products || []);
+    console.log('📦 Products:', products.length);
     
     // Display results
-    if (priceData && Array.isArray(priceData)) {
-      priceData.forEach((product, index) => {
+    if (products.length > 0) {
+      products.forEach((product, index) => {
         console.log(`\n--- Product ${index + 1} ---`);
         console.log('SKU:', product.ingramPartNumber);
         console.log('Description:', product.description || 'N/A');

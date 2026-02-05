@@ -139,7 +139,7 @@ class IngramClient {
    * @returns {string} Correlation ID
    */
   generateCorrelationId() {
-    return `logistico-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `logistico-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
   }
 
   /**
